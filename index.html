@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suleiman's Super Racer</title>
+    
+    <!-- 1. The CSS (The "Paint") -->
+    <!-- This small section will style our game page -->
+    <style>
+        /* Make the whole page black and remove any extra space */
+        body {
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Style our "game board" (the canvas) */
+        canvas {
+            border: 2px solid white;
+            background-color: #333; /* This will be our "road" color */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 2. The HTML (The "Game Board") -->
+    <!-- This is our digital drawing board. Everything in our game will be drawn on this canvas. -->
+    <canvas id="gameCanvas" width="350" height="600"></canvas>
+
+    <!-- 3. The JavaScript (The "Brain") -->
+    <!-- This is where we will write the logic for our game. -->
+    <script>
+        // --- SETUP ---
+
+        // Get the canvas element from the HTML page
+        const canvas = document.getElementById('gameCanvas');
+        
+        // Get the "drawing context". Think of this as our magic paintbrush.
+        const ctx = canvas.getContext('2d');
+
+        // --- DRAWING THE CAR ---
+
+        // Let's define our car
+        const car = {
+            x: 150,      // The horizontal position (from the left)
+            y: 500,      // The vertical position (from the top)
+            width: 50,   // The width of the car
+            height: 80   // The height of the car
+        };
+
+        // Now, let's use our "paintbrush" to draw the car
+        ctx.fillStyle = 'red'; // Choose the color red
+        
+        // Draw a filled rectangle on the canvas at the car's position
+        ctx.fillRect(car.x, car.y, car.width, car.height);
+
+    </script>
+</body>
+</html>
