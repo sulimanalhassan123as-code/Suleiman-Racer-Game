@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- user-scalable=no is good for games -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Suleiman's Super Racer</title>
     <style>
-        body {
+        /* This is the NEW, corrected CSS to perfectly center the game */
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             background-color: #000;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Hide scrollbars */
         }
         canvas {
             border: 2px solid white;
@@ -22,113 +29,63 @@
 </head>
 <body>
 
-    <canvas id="gameCanvas" width="350" height="600"></canvas>
+    <!-- NEW: A container to help with centering -->
+    <div class="container">
+        <canvas id="gameCanvas" width="350" height="600"></canvas>
+    </div>
 
     <script>
         // --- SETUP ---
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
 
-        // --- PLAYER CAR ---
+        // --- NEW: LOAD THE CAR IMAGE ---
+        const carImage = new Image();
+        // This is a link to a free online image of a top-down car.
+        carImage.src = 'https://i.ibb.co/99fWv1b/red-car-top-view.png';
+
+
+        // --- PLAYER CAR (now it has an image!) ---
         const car = {
             x: 150,
             y: 500,
-            width: 50,
-            height: 80,
-            speed: 5 // How fast the car moves left and right
+            width: 50,  // We will keep the width and height for collision detection later
+            height: 90, // The image is a bit taller
+            speed: 5
         };
 
-        // --- NEW: PLAYER CONTROLS (The "Steering Wheel") ---
+        // Player controls are the same (no changes)
         let moveLeft = false;
         let moveRight = false;
-
-        // Listen for when a key is PRESSED DOWN
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowLeft') {
-                moveLeft = true;
-            } else if (event.key === 'ArrowRight') {
-                moveRight = true;
-            }
-        });
-
-        // Listen for when a key is RELEASED
-        document.addEventListener('keyup', (event) => {
-            if (event.key === 'ArrowLeft') {
-                moveLeft = false;
-            } else if (event.key === 'ArrowRight') {
-                moveRight = false;
-            }
-        });
-        
-        // --- NEW: TOUCH CONTROLS for your PHONE! ---
-        canvas.addEventListener('touchstart', (event) => {
-            // Get the horizontal position of the touch
-            let touchX = event.touches[0].clientX;
-            // If the touch is on the left half of the screen, move left
-            if (touchX < canvas.width / 2) {
-                moveLeft = true;
-            } 
-            // If the touch is on the right half, move right
-            if (touchX > canvas.width / 2) {
-                moveRight = true;
-            }
-        });
-        
-        // When the finger is lifted, stop moving
-        canvas.addEventListener('touchend', (event) => {
-            moveLeft = false;
-            moveRight = false;
-        });
+        document.addEventListener('keydown', (e) => { if(e.key === 'ArrowLeft') moveLeft = true; if(e.key === 'ArrowRight') moveRight = true; });
+        document.addEventListener('keyup', (e) => { if(e.key === 'ArrowLeft') moveLeft = false; if(e.key === 'ArrowRight') moveRight = false; });
+        canvas.addEventListener('touchstart', (e) => { let touchX = e.touches[0].clientX; let canvasRect = canvas.getBoundingClientRect(); if(touchX - canvasRect.left < canvas.width / 2) moveLeft = true; if(touchX - canvasRect.left > canvas.width / 2) moveRight = true; });
+        canvas.addEventListener('touchend', (e) => { moveLeft = false; moveRight = false; });
 
 
-        // --- NEW: THE GAME LOOP (The "Engine") ---
+        // --- THE GAME LOOP (The "Engine") ---
         function gameLoop() {
-            // --- 1. UPDATE POSITIONS ---
-            // This is where we change the car's location based on controls
-            if (moveLeft && car.x > 0) { // Check we're not moving off the left edge
-                car.x -= car.speed;
-            }
-            if (moveRight && car.x < canvas.width - car.width) { // Check the right edge
-                car.x += car.speed;
-            }
+            // 1. UPDATE POSITIONS
+            if (moveLeft && car.x > 0) car.x -= car.speed;
+            if (moveRight && car.x < canvas.width - car.width) car.x += car.speed;
 
-            // --- 2. DRAW EVERYTHING ---
-            // First, clear the entire canvas (the road)
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // 2. DRAW EVERYTHING
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the road
 
-            // Now, draw the car in its new position
-            ctx.fillStyle = 'red';
-            ctx.fillRect(car.x, car.y, car.width, car.height);
+            // NEW: Draw the car IMAGE instead of a red rectangle
+            // The 'drawImage' function is used to draw images onto the canvas.
+            ctx.drawImage(carImage, car.x, car.y, car.width, car.height);
             
-            // --- 3. REPEAT ---
-            // This is the magic line. It tells the browser to run this gameLoop function again
-            // as soon as it's ready for the next frame (about 60 times per second).
+            // 3. REPEAT
             requestAnimationFrame(gameLoop);
         }
 
         // --- START THE GAME! ---
-        // This is the first call to our engine. It will now run forever.
-        gameLoop();
+        // Important: We wait for the image to fully load before starting the game.
+        carImage.onload = () => {
+            gameLoop();
+        };
 
     </script>
 </body>
-</html>```
-
-*   **Action:** Commit the change.
-
----
-
-### **What You Have Just Built**
-
-Now, when you go to your live website, you will see your red car again. But this time, it is alive!
-
-*   **On a computer:** Try pressing the **left and right arrow keys**. You will see your car move smoothly from side to side!
-*   **On your phone:** **Tap the left half of the game screen** to move left. **Tap the right half of the game screen** to move right.
-
-You have just created your first interactive game loop. This is the absolute core of all video games, from the simplest to the most complex.
-
-Please, go and update your file. When you have successfully driven your car left and right, come back and tell me:
-
-**"My car is moving!"**
-
-And then, we will add the next exciting feature: the enemy cars to dodge! Congratulations on this huge step, Suleiman
+</html>
