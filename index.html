@@ -1,47 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Never Hide VPN</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="theme-color" content="#20B2AA" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <div class="vpn-app">
-    <header>
-      <img src="icons/neverhide-logo.svg" alt="Never Hide VPN" class="logo">
-      <h1>Never Hide VPN</h1>
-      <p class="tagline">Stay Secure. Stay Hidden. Powered by Suleiman Alhassan.</p>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img src="/icons/neverhide-logo.svg" alt="Never Hide VPN" class="logo-img">
+        <div>
+          <h1>Never Hide VPN</h1>
+          <small class="tag">Fast • Private • Simple — Powered by Suleiman Alhassan</small>
+        </div>
+      </div>
+
+      <div class="controls">
+        <input id="search" placeholder="Search country or IP..." />
+        <select id="plan-filter">
+          <option value="all">All plans</option>
+          <option value="200">Free 200 MB</option>
+          <option value="500">500 MB</option>
+          <option value="1000">1 GB</option>
+        </select>
+        <button id="refreshBtn" class="btn small">Refresh</button>
+      </div>
     </header>
 
-    <main>
-      <div class="server-select">
-        <label for="server">Select Server:</label>
-        <select id="server">
-          <option value="us">🇺🇸 USA Server</option>
-          <option value="uk">🇬🇧 UK Server</option>
-          <option value="sg">🇸🇬 Singapore Server</option>
-          <option value="jp">🇯🇵 Japan Server</option>
-        </select>
-      </div>
+    <main class="main">
+      <section class="hero card">
+        <h2>Protect your internet, browse safely with Never Hide VPN</h2>
+        <p>Select a server, choose a data plan and download the OpenVPN profile (.ovpn). Open with <strong>OpenVPN Connect</strong> to connect.</p>
+        <div class="quick-stats">
+          <div id="connected-server">Not connected</div>
+          <div id="usage-summary">Used: 0 MB</div>
+        </div>
+      </section>
 
-      <div class="status">
-        <p id="status-text">Status: Disconnected ❌</p>
-      </div>
+      <section id="server-list" class="grid"></section>
 
-      <button id="connect-btn">Connect</button>
+      <section class="guide card">
+        <h3>How to use</h3>
+        <ol>
+          <li>Install <strong>OpenVPN Connect</strong> from Play Store.</li>
+          <li>Tap <em>Download .ovpn</em> on a server. File will download to device.</li>
+          <li>Open the downloaded file with OpenVPN Connect → Import → Connect.</li>
+        </ol>
+        <p class="small">Note: profiles come from the public VPN Gate project. Some servers may be slow or offline — refresh the list if needed.</p>
+      </section>
 
-      <div class="theme-toggle">
-        <label for="themeSwitch">🌙 Theme:</label>
-        <input type="checkbox" id="themeSwitch">
-      </div>
+      <section class="contact card">
+        <h3>Contact & Support</h3>
+        <p>Email: <a href="mailto:sulleyalhassan.178.as@gmail.com">sulleyalhassan.178.as@gmail.com</a></p>
+        <p>WhatsApp: <a href="https://wa.me/233599931348" target="_blank">+233 59 993 1348</a></p>
+        <p class="small">Report server issues or ask for premium servers here.</p>
+      </section>
+
+      <section class="ads card">
+        <h3>Ad / Upgrade (placeholder)</h3>
+        <p class="small">Ads go here — or put a "Go Premium" button later.</p>
+      </section>
     </main>
 
-    <footer>
-      <p>© 2025 Never Hide VPN — Powered by Suleiman Alhassan</p>
+    <footer class="footer">
+      <small>© 2025 Suleiman Alhassan — NEVER HIDE VPN</small>
     </footer>
   </div>
 
-  <script src="js/app.js"></script>
+  <script type="module" src="/js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').catch(()=>{});
+    }
+  </script>
 </body>
-        </html>
+  </html>
