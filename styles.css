@@ -1,175 +1,87 @@
-/* styles.css — Islamic Google Modern style */
-:root{
-  --bg: #ffffff;
-  --muted: #6b7280;
-  --accent: #0f9d58; /* fresh green */
-  --accent-2: #0b7a43;
-  --card: #f8faf9;
-  --shadow: 0 6px 20px rgba(15,157,88,0.08);
-  --radius: 12px;
-  --glass: rgba(255,255,255,0.6);
-  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
 body{
-  background: linear-gradient(180deg, #fbfdfb 0%, #ffffff 100%);
-  color:#0b1220;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:32px;
+  background:#f4f4f4;
+  color:#222;
   display:flex;
-  align-items:flex-start;
   justify-content:center;
-  font-size:16px;
+  align-items:center;
+  height:100vh;
 }
 
-.container{
-  width:100%;
-  max-width:960px;
-  margin:20px auto;
-}
-
-/* Hero */
-.hero{
+.vpn-app{
+  background:white;
+  width:90%;
+  max-width:400px;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
   text-align:center;
-  margin-bottom:18px;
-}
-.brand{
-  font-weight:700;
-  letter-spacing:-0.6px;
-  font-size:40px;
-}
-.brand-islamic{ color: var(--accent-2); }
-.brand-google{ color: #111827; margin-left:8px; font-weight:600; }
-.tagline{
-  color:var(--muted);
-  margin-top:8px;
-  font-weight:300;
 }
 
-/* Search */
-.search-section{
-  background:var(--card);
-  padding:18px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+.logo{
+  width:80px;
+  height:80px;
+}
+
+h1{
+  color:#008080;
+  margin:10px 0;
+}
+
+.tagline{
+  font-size:0.9rem;
+  opacity:0.8;
   margin-bottom:20px;
 }
 
-.search-form{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.search-input{
-  flex:1;
-  padding:14px 16px;
+.server-select select{
+  padding:10px;
   border-radius:10px;
-  border:1px solid #e6eef0;
-  font-size:16px;
-  outline:none;
-  background:transparent;
+  border:1px solid #ccc;
+  font-size:1rem;
+  width:100%;
+  margin-bottom:20px;
 }
-.search-input:focus{ box-shadow:0 4px 14px rgba(15,157,88,0.08); border-color:var(--accent); }
 
-.search-btn{
-  background:var(--accent);
+#connect-btn{
+  background:#008080;
   color:white;
   border:none;
-  padding:12px 18px;
-  border-radius:10px;
-  font-weight:600;
+  padding:12px 25px;
+  border-radius:30px;
+  font-size:1.1rem;
   cursor:pointer;
-  box-shadow:0 6px 16px rgba(15,157,88,0.18);
-}
-.search-btn:hover{ background:var(--accent-2); transform:translateY(-1px); transition:all .15s ease; }
-
-/* Results */
-.results{
-  margin-top:14px;
-}
-.result-item{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-  padding:12px;
-  border-radius:10px;
-  transition:background .12s ease;
-}
-.result-item + .result-item{ margin-top:10px; }
-.result-item:hover{ background:rgba(15,157,88,0.03); }
-
-.result-thumb{
-  width:86px;
-  height:56px;
-  background:#eef6f0;
-  border-radius:8px;
-  flex-shrink:0;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.result-thumb img{ width:100%; height:100%; object-fit:cover; }
-
-/* meta */
-.result-main{ flex:1; }
-.result-title{ font-weight:600; color:#0b1220; margin-bottom:6px; text-decoration:none; display:block; }
-.result-link{ color:var(--muted); font-size:13px; margin-bottom:6px; display:block; }
-.result-snippet{ color:var(--muted); font-size:14px; line-height:1.5; }
-
-/* Ask AI */
-.ai-section{
-  margin-top:18px;
-  padding:16px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.5));
-}
-.ai-title{ font-size:18px; margin-bottom:8px; }
-.ask-form{ display:flex; gap:10px; align-items:flex-start; }
-.ask-input{
-  flex:1;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid #e6eef0;
-  resize:vertical;
-  min-height:52px;
-}
-.ask-btn{
-  background:transparent;
-  border:2px solid var(--accent);
-  color:var(--accent);
-  padding:10px 14px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:600;
-}
-.ai-response{
-  margin-top:12px;
-  background:#fff;
-  padding:14px;
-  border-radius:10px;
-  min-height:56px;
-  white-space:pre-wrap;
-  font-size:15px;
-  line-height:1.6;
-  border:1px solid #eef4ef;
+  transition:0.3s;
 }
 
-/* footer */
-.footer{
-  margin-top:14px;
-  color:var(--muted);
-  text-align:center;
-  font-size:13px;
-  padding-bottom:40px;
+#connect-btn:hover{
+  background:#006666;
 }
 
-/* small screens */
-@media (max-width:640px){
-  .brand{ font-size:28px; }
-  .result-thumb{ width:74px; height:48px; }
+.status{
+  margin-bottom:20px;
+  font-weight:bold;
+}
+
+.theme-toggle{
+  margin-top:20px;
+}
+
+footer{
+  margin-top:20px;
+  font-size:0.8rem;
+  color:#555;
+}
+
+/* Dark Theme */
+body.dark{
+  background:#121212;
+  color:#eee;
+}
+body.dark .vpn-app{
+  background:#1e1e1e;
+}
+body.dark #connect-btn{
+  background:#00b8b8;
 }
