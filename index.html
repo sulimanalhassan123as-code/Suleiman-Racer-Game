@@ -1,42 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Islamic Google — Modern Model</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Never Hide VPN</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main class="container">
-    <header class="hero">
-      <h1 class="brand"><span class="brand-islamic">Islamic</span> <span class="brand-google">Google</span></h1>
-      <p class="tagline">Search Islamic resources and ask an AI assistant — respectful, accurate, and concise.</p>
+  <div class="vpn-app">
+    <header>
+      <img src="icons/neverhide-logo.svg" alt="Never Hide VPN" class="logo">
+      <h1>Never Hide VPN</h1>
+      <p class="tagline">Stay Secure. Stay Hidden. Powered by Suleiman Alhassan.</p>
     </header>
 
-    <section class="search-section">
-      <form id="searchForm" class="search-form" aria-label="Search Islamic content">
-        <input id="searchInput" class="search-input" type="search" placeholder="Search topics, prophets, Quranic verses..." autocomplete="off" />
-        <button id="searchBtn" class="search-btn" type="submit">Search</button>
-      </form>
+    <main>
+      <div class="server-select">
+        <label for="server">Select Server:</label>
+        <select id="server">
+          <option value="us">🇺🇸 USA Server</option>
+          <option value="uk">🇬🇧 UK Server</option>
+          <option value="sg">🇸🇬 Singapore Server</option>
+          <option value="jp">🇯🇵 Japan Server</option>
+        </select>
+      </div>
 
-      <div id="results" class="results" aria-live="polite"></div>
-    </section>
+      <div class="status">
+        <p id="status-text">Status: Disconnected ❌</p>
+      </div>
 
-    <section class="ai-section">
-      <h2 class="ai-title">Ask AI</h2>
-      <form id="askForm" class="ask-form" aria-label="Ask AI">
-        <textarea id="askInput" class="ask-input" rows="2" placeholder="Ask the Islamic assistant a respectful question..."></textarea>
-        <button id="askBtn" class="ask-btn" type="submit">Ask</button>
-      </form>
-      <div id="aiResponse" class="ai-response"></div>
-    </section>
+      <button id="connect-btn">Connect</button>
 
-    <footer class="footer">
-      <p>New project — modern Islamic Google style. Deploy on Vercel and set env vars. See README for instructions.</p>
+      <div class="theme-toggle">
+        <label for="themeSwitch">🌙 Theme:</label>
+        <input type="checkbox" id="themeSwitch">
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Never Hide VPN — Powered by Suleiman Alhassan</p>
     </footer>
-  </main>
+  </div>
 
   <script src="js/app.js"></script>
 </body>
-</html>
+        </html>
